@@ -5,6 +5,12 @@ import time
 import re
 from multiprocessing import Lock
 
+""" Change the device host and port name to your liking
+"""
+
+device_host = 'localhost'
+device_port = 4096
+
 mutex = Lock()
 
 workers = 1024
@@ -177,7 +183,7 @@ def start_telnet_server(identifier):
 
 def start_proxy():
     # Make a connection with the telnet device (could be any device e.g. an ACU)
-    threading.Thread(target=TelnetProxy, args=('localhost', 4096),).start()
+    threading.Thread(target=TelnetProxy, args=(device_host, device_port),).start()
 
     # Spawn multiple telnet listeners for clients who like to connect
     print('Telnet Proxy server:')
